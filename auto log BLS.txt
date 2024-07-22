@@ -1,0 +1,172 @@
+// ==UserScript==
+// @name         auto login BLS 
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @match       https://algeria.blsspainglobal.com/*
+// @match       https://algeria.blsspainglobal.com/DZA/account/login?returnUrl=%2fDZA%2fbls%2fVisaTypeVerification
+
+// @match       https://spain.blscn.cn/*
+// @match       https://spain.blscn.cn/CHN/Account/LogIn?ReturnUrl=%2FCHN%2FblsAppointment%2FManageAppointment
+
+// @grant
+// ==/UserScript==
+//////////////////////////////////////////////////////////////////////
+
+
+
+//--------  put here your Email and Your PASSWORD -----------------------
+//--------        غير هنا ايمايل و باسورد الخاص بك  ---------------------------------
+
+
+var email1 = "taibconsulting2023@gmail.com";
+
+var mp = "foufou2024@";
+
+//----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//----------------------- Reload page if ERROR  ----------------------------------------------------------------------------------------------------
+
+if (document.title == "504 Gateway Time-out" || document.title =="502 Bad Gateway" || document.title =="503 Service Temporarily Unavailable" || document.title =="Service Unavailable" || document.title =="500 Internal Server Error" || document.title =="Database error" || document.title =="FastCGI Error" || document.title =="The connection has timed out" || document.title =="Problemas al cargar la página" || document.title =="Error 502 (Server Error)!!1" ||
+    document.title =="403 Forbidden" || document.title =="Service Unavailable','403 ERROR" || document.title =="502 Bad Gateway" || document.title =="502 Bad Gateway" || document.title =="502 Bad Gateway" ) {
+    window.location.reload();
+}
+
+
+
+
+
+
+if(document.getElementById("UserId1") != null){
+    document.getElementById("UserId1").value=email1;
+    document.getElementById("Password1").value=mp;
+}
+
+if(document.getElementById("UserId2") != null){
+    document.getElementById("UserId2").value=email1;
+    document.getElementById("Password2").value=mp;
+
+}
+
+if(document.getElementById("UserId3") != null){
+    document.getElementById("UserId3").value=email1;
+    document.getElementById("Password3").value=mp;
+}
+
+if(document.getElementById("UserId4") != null){
+    document.getElementById("UserId4").value=email1;
+    document.getElementById("Password4").value=mp;
+
+}
+
+if(document.getElementById("UserId5") != null){
+    document.getElementById("UserId5").value=email1;
+    document.getElementById("Password5").value=mp;
+
+}
+
+if(document.getElementById("UserId6") != null){
+    document.getElementById("UserId6").value=email1;
+    document.getElementById("Password6").value=mp;
+
+}
+
+if(document.getElementById("UserId7") != null){
+    document.getElementById("UserId7").value=email1;
+    document.getElementById("Password7").value=mp;
+}
+
+if(document.getElementById("UserId8") != null){
+    document.getElementById("UserId8").value=email1;
+    document.getElementById("Password8").value=mp;
+
+}
+
+if(document.getElementById("UserId9") != null){
+    document.getElementById("UserId9").value=email1;
+    document.getElementById("Password9").value=mp;
+}
+
+if(document.getElementById("UserId10") != null){
+    document.getElementById("UserId10").value=email1;
+    document.getElementById("Password10").value=mp;
+}
+
+
+//----------------------- click btnVerify ------------------------------------------------------
+
+const btnVerify = document.querySelector("#btnVerify");if (btnVerify) {(btnVerify).click();}
+
+
+
+//----------------------- click btnSubmit ------------------------------------------------------
+
+(function() {
+    'use strict';
+
+    function simulateClick() {
+        var submitButton = document.querySelector("#btnSubmit");
+        if (submitButton) {
+            submitButton.click();
+        }
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'value') {
+                var captchaData = document.querySelector("#CaptchaData");
+                if (captchaData && captchaData.value) {
+                    simulateClick();
+                }
+            }
+        });
+    });
+
+    var captchaDataElement = document.querySelector("#CaptchaData");
+    if (captchaDataElement && captchaDataElement.value) {
+        simulateClick();
+    } else {
+        observer.observe(captchaDataElement, {
+            attributes: true,
+            attributeFilter: ['value'],
+        });
+    }
+})();
+
+
+
+
+//-----------------  ENABLE input & enable copy paste on page and select all   -------------------------------------------------------------------------------------------------------------------------
+
+(function() {
+
+$('input.entry-disabled').off('copy paste');
+
+
+ // Get a reference to the form element
+var form = document.getElementsByTagName('form')[0]; // Replace 'yourFormId' with the actual ID of your form
+
+
+var pattern = /Password/g;
+// Loop through all existing input elements inside the form
+var existingInputs = form.getElementsByTagName('input');
+for (var i = 0; i < existingInputs.length; i++) {
+
+    // Replace each existing input with the new input
+    var currentInput = existingInputs[i];
+    if((currentInput.name).match(pattern) != null) {
+        var newInput = document.createElement('input');
+        newInput.type = 'text'; // Set the type of the new input element
+        newInput.name = currentInput.name; // Set a name attribute if needed
+        newInput.value=mp; // Set an initial value if needed
+        newInput.classList.add("form-control");
+        currentInput.parentNode.replaceChild(newInput.cloneNode(true), currentInput);
+    }
+}
+})();
+
+
